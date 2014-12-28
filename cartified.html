@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cartified</title>
+    <script type="text/javascript" src="lib/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="cartApp">
+    <div ng-controller="MainCtrl">
+        <h2>Item which you can add to your cart</h2>
+        <div ng-repeat="item in items">
+            {{item.id}} : {{item.name}}
+            <select ng-model="quantity" ng-options="val for val in [1,2,3]"></select>
+            <button ng-click="addItemToCart(item,quantity)">Add</button>
+        </div>
+        <hr/>
+        <h2>You have following items in your cart :</h2>
+        <p ng-repeat="item in cart">
+            {{item.id}} : {{item.name}} :
+            <select ng-model="item.quantity" ng-selected="item.quantity" ng-options="val for val in [1,2,3,4,5,6,7,8,9,10]"></select>
+            <button ng-click="deleteItemFromCart(item.id)">Delete</button>
+            <button ng-click="updateQuantity(item.id, item.quantity)">Update Quantity</button>
+        </p>
+        <hr/>
+        <button ng-click="emptyCart()"> Empty Cart</button>
+    </div>
+</div>
+<script type="text/javascript" src="helpers/utils.js"></script>
+<script type="text/javascript" src="services/reviewerService.js"></script>
+<script type="text/javascript" src="services/cartService.js"></script>
+<script type="text/javascript" src="controllers/cartController.js"></script>
+</body>
+</html>
